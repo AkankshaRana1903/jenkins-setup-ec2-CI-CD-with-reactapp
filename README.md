@@ -155,16 +155,12 @@ nano /etc/nginx/nginx.conf
 Inside server block:
 
 ```nginx
-server {
-    listen 80;
-    server_name _;
-
+location / {
     root /usr/share/nginx/html;
     index index.html;
-
-    location / {
-        try_files $uri /index.html;
-    }
+    try_files $uri /index.html;
+    
+    add_header Cache-Control "no-cache, no-store, must-revalidate";
 }
 ```
 
